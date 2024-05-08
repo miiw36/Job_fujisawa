@@ -1,0 +1,318 @@
+@charset "utf-8";
+
+
+
+/* レイアウトのためのCSS */
+
+body{
+    background:#333333;
+    font-family: 'Rammetto One', cursive, "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+	color: #78A88E;
+	font-size:1rem;
+	line-height:1.85;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%; 
+	word-wrap: break-word;
+}
+
+body.appear{
+    background:#d87514;   
+}
+
+@media screen and (max-width:768px) {
+body{
+	font-size:0.8rem;
+	}
+}
+
+/*ロゴウェーブ*/
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.logo {
+    animation: wave 2s infinite; /* ウェーブアニメーションを適用 */
+    display: inline-block;
+    text-align: center; /* テキストを中央に配置 */
+    height: auto; /* 高さを自動で調整 */
+    color: #F6F1B6; /* テキストの色を白色に設定 */
+    font-size: 50px; /* テキストのフォントサイズを24ピクセルに設定 */
+    padding: 10px; /* テキストの周囲に10ピクセルの余白を追加 */
+    border-radius: 5px; /* テキストの角を丸くする */
+}
+
+.pv-title{
+    position:fixed;
+    bottom:0;
+    color:#d87514;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 13.7vw;
+    line-height: 0.8;
+    white-space: nowrap;
+}
+
+/*ナビゲーション位置*/
+
+#g-nav{
+    position: absolute;
+    z-index: 2;
+    top:20px;
+    right:20px;
+}
+
+.fadeDown {
+    display: none;
+}
+
+.fadeDown.active {
+    display: block;
+    animation-name: fadeDownAnime;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+@keyframes fadeDownAnime {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*========= ヘッダーナビゲーションのためのCSS ===============*/
+
+/*==ヘッダーの形状*/
+
+#header {
+    height: 70px;
+    width: auto; /* 幅を動画に合わせるために自動調整 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff; /* ヘッダーのテキスト色を白に設定 */
+    padding: 0 20px; /* ヘッダーのパディングを左右に追加 */
+    position: absolute; /* ヘッダーを絶対位置に配置 */
+    top: 20px; /* 画面上端からの距離を調整 */
+    left: 20px; /* 画面左端からの距離を調整 */
+    z-index: 1; /* 動画より手前に表示 */
+}
+
+#header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0; /* ナビゲーションリストのマージンをリセット */
+    padding: 0; /* ナビゲーションリストのパディングをリセット */
+}
+
+#header nav ul li {
+    margin-left: 20px; /* ナビゲーションリストアイテム間の間隔を設定 */
+}
+
+#header nav ul li:first-child {
+    margin-left: 0; /* 最初のナビゲーションリストアイテムのマージンをリセット */
+}
+#header nav ul li a {
+    color: #fff; /* ナビゲーションリンクの色を白に設定 */
+    text-decoration: none;
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+#header nav ul li a:hover {
+    color: #d87514; /* ナビゲーションリンクのホバー時の色を変更 */
+}
+
+#header nav {
+    display: flex;
+    justify-content: flex-end; /* リストを右寄せに */
+}
+
+#header nav a {
+    color: #fff; /* リンクの色を白に設定 */
+    text-decoration: none; /* リンクの下線を削除 */
+    padding: 10px 20px; /* パディングを追加 */
+    border: 1px solid #fff; /* 枠線を追加 */
+    border-radius: 5px; /* 枠線の角を丸くする */
+    transition: all 0.3s; /* インタラクションを追加 */
+}
+
+#header nav a:hover {
+    background-color: #fff; /* ホバー時の背景色を白に変更 */
+    color: #333; /* ホバー時のテキスト色を暗めに変更 */
+}
+
+/*.doneクラスがついたヘッダー*/
+#header.dnone {
+    opacity: 0;/*透過0にして非表示に*/
+}
+
+/*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたら*/
+#header.dnone.panelactive {
+    opacity: 1;/*不透明にして出現*/
+}
+
+
+/*==ヘッダーのテキストナビゲーションの形状*/
+#g-navi ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+#g-navi ul li a{
+    display: block;
+    text-decoration: none;
+    color: #66666600;
+    padding:10px;
+}
+
+#g-navi ul li.current a,
+#g-navi ul li a:hover{
+    color:#fff; 
+}
+
+/*.doneクラスがついたヘッダーのテキストナビゲーションの形状*/
+#header.dnone #g-navi{
+    /*固定位置にして最背面に*/
+    position:fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /*高さと幅*/  
+    width:100%;
+    height: 100vh;
+    /*天地中央＆テキスト中央揃え*/  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /*はじめは透過0に*/  
+    opacity: 0;
+    transition: all 0.4s;
+}
+
+/*メニューボタンをクリックした際に付与されるpanelactiveクラスがついたナビゲーションの形状*/
+#header.dnone.panelactive #g-navi{
+    opacity: 1;/*不透明に*/
+    z-index:3;/*最前面に*/
+    background:#eee;
+}
+
+#header.dnone.panelactive #g-navi ul{
+    display:block;/*flexの横並びをblockにして縦並びに*/
+}
+
+
+/*リストの形状*/
+
+#header.dnone.panelactive #g-navi li a{
+    
+    text-decoration: none;
+    padding:10px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    transition:all 0.3s;
+}
+
+section{
+    position: relative;
+    z-index: 1;
+}
+
+#video-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* ビデオエリアを画面の高さいっぱいにする */
+}
+
+#video {
+    width: 90%; /* ビデオの幅を50%に設定 */
+    height: auto; /* 高さを自動で調整してアスペクト比を維持 */
+    max-width: 100%; /* ビデオが親要素より大きくならないように最大幅を設定 */
+    max-height: 100%; /* ビデオが親要素より大きくならないように最大高さを設定 */
+}
+
+.logo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*========= レイアウトのためのCSS ===============*/
+
+h1{
+    font-size:3rem;
+}
+
+h2{
+    font-size:1.2rem;
+    text-align: center;
+    margin: 0 0 30px 0;
+    position: relative;
+    animation: fallingText 2s ease forwards;
+}
+/* h2のアニメーションキーフレーム */
+@keyframes fallingText {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.title-container {
+    position: relative;
+    display: inline-block; /* タイトルと画像を横並びにするため */
+}
+/* 画像を少し動かす */
+h2 img {
+    margin-left: 10px; /* 画像を左に10px移動 */
+    animation: jump 0.5s infinite; /* アニメーションを無限に繰り返す */
+}
+/* 画像をジャンプさせる */
+@keyframes jump {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); } /* 上に20pxジャンプ */
+    100% { transform: translateY(0); }
+}
+p{
+    margin-top:20px;  
+}
+
+small{
+    background:#333;
+    color:#fff;
+    display: block;
+    text-align: center;
+    padding:20px;
+}
+
+
+section{
+    padding:30px;
+}
+
+section:nth-child(2n){
+    background:#f3f3f3; 
+}
+
