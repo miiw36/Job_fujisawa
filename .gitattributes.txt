@@ -1,3 +1,0 @@
-css/reset6.css text eol=lf
-jquery-3.7.1.min.js text eol=lf
-
